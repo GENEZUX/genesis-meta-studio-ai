@@ -1,251 +1,394 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Genesis Meta Studio AI - Professional Content Generation</title>
+  <title>Genesis Meta Studio AI - Plataforma de Contenido Profesional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0f3a62 100%);
-      color: #e0e0e0;
-      min-height: 100vh;
-      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #1a1a1a;
+      line-height: 1.6;
     }
-    
+
     header {
-      position: fixed;
+      background: white;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
       top: 0;
-      width: 100%;
-      background: rgba(10, 10, 26, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 255, 200, 0.2);
-      padding: 1rem 2rem;
-      z-index: 1000;
+      z-index: 100;
+      padding: 1.5rem 0;
     }
-    
-    .header-content {
+
+    .container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .logo {
       font-size: 1.5rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, #00ffcc, #00ff88);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 700;
+      color: #1a1a1a;
     }
-    
+
     nav {
       display: flex;
-      gap: 2rem;
+      gap: 3rem;
     }
-    
+
     nav a {
-      color: #e0e0e0;
+      color: #666;
       text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
       transition: color 0.3s;
     }
-    
+
     nav a:hover {
-      color: #00ffcc;
+      color: #1a1a1a;
     }
-    
-    main {
-      margin-top: 80px;
-      padding: 0 2rem;
-    }
-    
+
     .hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      min-height: calc(100vh - 80px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 5rem 0;
       text-align: center;
-      gap: 2rem;
     }
-    
-    h1 {
-      font-size: 4rem;
-      background: linear-gradient(135deg, #00ffcc, #00ff88, #ff0088);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: glow 3s ease-in-out infinite;
+
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
       line-height: 1.2;
     }
-    
-    .subtitle {
-      font-size: 1.5rem;
-      color: #00ffcc;
+
+    .hero .subtitle {
+      font-size: 1.25rem;
+      color: #666;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 2rem;
+      font-weight: 300;
     }
-    
+
     .cta-buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
-      margin-top: 2rem;
+      margin-bottom: 4rem;
     }
-    
+
     button {
-      padding: 1rem 2rem;
+      padding: 0.875rem 2rem;
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 4px;
       cursor: pointer;
+      font-weight: 600;
       transition: all 0.3s;
-      font-weight: bold;
+      font-family: 'Inter', sans-serif;
     }
-    
+
     .btn-primary {
-      background: linear-gradient(135deg, #00ffcc, #00ff88);
-      color: #000;
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+      background-color: #1a1a1a;
+      color: white;
     }
-    
+
     .btn-primary:hover {
-      box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
-      transform: translateY(-2px);
+      background-color: #333;
     }
-    
+
     .btn-secondary {
-      background: rgba(0, 255, 204, 0.1);
-      color: #00ffcc;
-      border: 2px solid #00ffcc;
+      background-color: transparent;
+      color: #1a1a1a;
+      border: 2px solid #1a1a1a;
     }
-    
+
     .btn-secondary:hover {
-      background: rgba(0, 255, 204, 0.2);
-      transform: translateY(-2px);
+      background-color: #1a1a1a;
+      color: white;
     }
-    
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 4rem auto;
-      max-width: 1200px;
+
+    .hero-image {
+      width: 100%;
+      max-width: 500px;
+      height: 400px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+      border-radius: 8px;
+      margin: 0 auto 2rem;
     }
-    
-    .feature-card {
-      background: rgba(0, 255, 204, 0.05);
-      border: 1px solid rgba(0, 255, 204, 0.2);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: all 0.3s;
+
+    section {
+      padding: 4rem 0;
+      border-top: 1px solid #e5e5e5;
     }
-    
-    .feature-card:hover {
-      background: rgba(0, 255, 204, 0.1);
-      border-color: rgba(0, 255, 204, 0.5);
-      transform: translateY(-10px);
-    }
-    
-    .feature-card h3 {
-      color: #00ffcc;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-    
-    .feature-card p {
-      color: #a0a0a0;
-      line-height: 1.6;
-    }
-    
-    @keyframes glow {
-      0%, 100% {
-        text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-      }
-      50% {
-        text-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
-      }
-    }
-    
-    footer {
-      max-width: 1200px;
-      margin: 4rem auto 0;
-      padding: 2rem;
-      border-top: 1px solid rgba(0, 255, 204, 0.2);
+
+    h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
       text-align: center;
+      color: #1a1a1a;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      transition: all 0.3s;
+      text-align: left;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: #d0d0d0;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #1a1a1a;
+    }
+
+    .service-card p {
       color: #666;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .testimonials {
+      background-color: #f9f9f9;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #1a1a1a;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      nav {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <div class="logo">🎬 Genesis Meta Studio AI</div>
+    <div class="container">
+      <div class="logo">Genesis Meta Studio AI</div>
       <nav>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
       </nav>
     </div>
   </header>
-  
+
   <main>
     <section class="hero">
-      <h1>Professional AI-Powered Content Generation</h1>
-      <p class="subtitle">Create stunning videos, interactive games, and immersive 3D worlds in minutes using cutting-edge AI technology</p>
-      <div class="cta-buttons">
-        <button class="btn-primary" onclick="alert('Welcome to Genesis Meta Studio AI!')">Get Started</button>
-        <button class="btn-secondary" onclick="alert('Watch demo videos')">View Demo</button>
+      <div class="container">
+        <h1>Transformamos Ideas en Realidades Digitales</h1>
+        <p class="subtitle">Soluciones profesionales en producción de video, creación de juegos 3D e inmersión digital para estudios y empresas</p>
+        <div class="cta-buttons">
+          <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})">Solicitar Cotización</button>
+          <button class="btn-secondary" onclick="alert('Demo disponible próximamente')">Ver Demo</button>
+        </div>
       </div>
     </section>
-    
-    <section class="features" id="features">
-      <div class="feature-card">
-        <h3>🎥 Video Studio Ultra</h3>
-        <p>Generate 4K professional videos with AI using Nova, Krea.ai, and Adobe Firefly</p>
+
+    <section id="servicios">
+      <div class="container">
+        <h2>Nuestros Servicios</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>🎬 Studio de Video 4K</h3>
+            <p>Generamos videos profesionales en 4K usando inteligencia artificial. Ideal para campañas publicitarias, contenido social y presentaciones empresariales.</p>
+          </div>
+          <div class="service-card">
+            <h3>🎮 Desarrollo de Juegos 3D</h3>
+            <p>Creamos experiencias interactivas y juegos 3D sin necesidad de codificación avanzada. Perfectos para entretenimiento corporativo y educación.</p>
+          </div>
+          <div class="service-card">
+            <h3>🌍 Mundos Virtuales</h3>
+            <p>Diseñamos entornos 3D procedurales e inmersivos. Utilizamos tecnología DeepMind para crear mundos únicos y personalizados.</p>
+          </div>
+          <div class="service-card">
+            <h3>💰 Marketplace de Contenido</h3>
+            <p>Monetiza tu contenido en nuestra plataforma. Modelo de comisión del 30% para que tus obras generen ingresos continuos.</p>
+          </div>
+          <div class="service-card">
+            <h3>📊 Dashboard Analítico</h3>
+            <p>Monitorea métricas en tiempo real, uso de servicios y suscripciones. Control total sobre tu negocio digital.</p>
+          </div>
+          <div class="service-card">
+            <h3>🔐 Seguridad Empresarial</h3>
+            <p>Autenticación JWT, cumplimiento GDPR y garantía de 99.9% SLA. Protección total para tu información sensible.</p>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <h3>🎮 Game Builder AI</h3>
-        <p>Create 3D games without coding using Babylon.js and WebGL</p>
+    </section>
+
+    <section id="testimonios" class="testimonials">
+      <div class="container">
+        <h2>Lo Que Dicen Nuestros Clientes</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <p>"Genesis Meta Studio AI transformó completamente nuestro proceso de creación de contenido. Los resultados fueron profesionales y llegaron en la mitad del tiempo."</p>
+            <div class="testimonial-author">- María García, Directora Creativa</div>
+          </div>
+          <div class="testimonial">
+            <p>"La plataforma es intuitiva y poderosa. Nuestro equipo pudo crear juegos 3D de calidad profesional sin experiencia previa."</p>
+            <div class="testimonial-author">- Carlos López, Productor de Juegos</div>
+          </div>
+          <div class="testimonial">
+            <p>"El soporte al cliente es excepcional. Resolvieron todos nuestros problemas de forma rápida y efectiva."</p>
+            <div class="testimonial-author">- Ana Rodríguez, Gerente de Proyectos</div>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <h3>🌍 3D World Generator</h3>
-        <p>Build procedural 3D worlds with Genie 3 DeepMind technology</p>
-      </div>
-      <div class="feature-card">
-        <h3>💰 Marketplace</h3>
-        <p>Sell and monetize content with 30% commission model</p>
-      </div>
-      <div class="feature-card">
-        <h3>📊 Real-time Dashboard</h3>
-        <p>Monitor metrics, usage, and subscriptions in real time</p>
-      </div>
-      <div class="feature-card">
-        <h3>🔒 Enterprise Security</h3>
-        <p>JWT authentication, GDPR compliance, 99.9% SLA</p>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <h2>Contáctanos</h2>
+        <div class="contact-form">
+          <form onsubmit="alert('Formulario enviado correctamente'); return false;">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="empresa">Empresa (Opcional)</label>
+              <input type="text" id="empresa" name="empresa">
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Enviar Mensaje</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
-  
+
   <footer>
-    <p>&copy; 2024 Genesis Meta Studio AI. All rights reserved. | Production Ready v1.0</p>
+    <div class="container">
+      <p>&copy; 2024 Genesis Meta Studio AI. Todos los derechos reservados. Plataforma Profesional v1.0</p>
+    </div>
   </footer>
-  
-  <script>
-    console.log('Genesis Meta Studio AI - Loaded Successfully');
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM Ready - Platform initialized');
-    });
-  </script>
 </body>
 </html>
