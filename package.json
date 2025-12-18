@@ -1,0 +1,21 @@
+{
+  "name": "genesis-meta-studio-ai",
+  "version": "1.0.0",
+  "description": "Professional AI-powered Content Generation Platform",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}
